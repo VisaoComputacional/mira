@@ -1,6 +1,6 @@
 from Workspace import CurrentSituationalModel
 from SensoryMemory import SensoryMemory
-#from pubsub import pub
+from pubsub import pub
 import pandas as pd
 
 class Environment:
@@ -10,8 +10,8 @@ class Environment:
         self.csm = CurrentSituationalModel()
 
         # se inscreve no topico CurrentSituationalModel e publica o status do ambiente
-        #pub.subscribe(self.csm.listener, 'CurrentSituationalModel')
-        #pub.sendMessage('CurrentSituationalModel', arg1=self.getModule(), arg2=None)
+        pub.subscribe(self.csm.listener, 'CurrentSituationalModel')
+        pub.sendMessage('CurrentSituationalModel', arg1=self.getModule(), arg2=None)
         
         self.user = int(input('Insira o userID: '))
         self.sm = SensoryMemory(self.user, self.csm)
