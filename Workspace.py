@@ -1,6 +1,6 @@
 from DeclarativeMemory import DeclarativeMemory
 from AttentionCodelets import AttentionCodelets
-#from pubsub import pub
+from pubsub import pub
 import pandas as pd
 import numpy as np
 import pickle
@@ -24,8 +24,8 @@ class Workspace:
         self.user_id = user_id
 
         # se inscreve no topico CurrentSituationalModel e publica o status do ambiente
-        #pub.subscribe(self.csm.listener, 'CurrentSituationalModel')
-        #pub.sendMessage('CurrentSituationalModel', arg1=self.getModule(), arg2=None)
+        pub.subscribe(self.csm.listener, 'CurrentSituationalModel')
+        pub.sendMessage('CurrentSituationalModel', arg1=self.getModule(), arg2=None)
 
         self.user_data = user_data
 
@@ -59,8 +59,8 @@ class StructureBuildingCodelets:
 
         self.csm = csm
 
-        #pub.subscribe(self.csm.listener, 'CurrentSituationalModel')
-        #pub.sendMessage('CurrentSituationalModel', arg1=self.getModule(), arg2=None)
+        pub.subscribe(self.csm.listener, 'CurrentSituationalModel')
+        pub.sendMessage('CurrentSituationalModel', arg1=self.getModule(), arg2=None)
 
     def histogramBuilder(self):
 
