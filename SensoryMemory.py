@@ -1,5 +1,5 @@
 from PerceptualAssociativeMemory import PerceptualAssociativeMemory
-#from pubsub import pub
+from pubsub import pub
 
 class SensoryMemory:
 
@@ -10,8 +10,8 @@ class SensoryMemory:
         self.csm = csm
 
         # se inscreve no topico CurrentSituationalModel e publica o status do ambiente
-        #pub.subscribe(self.csm.listener, 'CurrentSituationalModel')
-        #pub.sendMessage('CurrentSituationalModel', arg1=self.getModule(), arg2=None)
+        pub.subscribe(self.csm.listener, 'CurrentSituationalModel')
+        pub.sendMessage('CurrentSituationalModel', arg1=self.getModule(), arg2=None)
 
         self.pam = PerceptualAssociativeMemory(self.user, self.csm)
 
