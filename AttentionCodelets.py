@@ -2,7 +2,7 @@ from GlobalWorkspace import GlobalWorkspace
 import pandas as pd
 import numpy as np
 import pickle
-#from pubsub import pub
+from pubsub import pub
 from sklearn.cluster import KMeans
 import imp
 import re
@@ -24,8 +24,8 @@ class AttentionCodelets:
         self.df_original = database
 
         # se inscreve no topico CurrentSituationalModel e publica o status do ambiente
-        #pub.subscribe(self.csm.listener, 'CurrentSituationalModel')
-        #pub.sendMessage('CurrentSituationalModel', arg1=self.getModule(), arg2=None)
+        pub.subscribe(self.csm.listener, 'CurrentSituationalModel')
+        pub.sendMessage('CurrentSituationalModel', arg1=self.getModule(), arg2=None)
 
         self.gwt = GlobalWorkspace(self.relevant_contents(), self.database, self.csm)
 
