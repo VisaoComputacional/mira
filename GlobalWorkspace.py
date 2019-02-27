@@ -1,7 +1,7 @@
 from ProceduralMemory import ProceduralMemory
 import pandas as pd
 import numpy as np
-#from pubsub import pub
+from pubsub import pub
 
 class GlobalWorkspace:
 
@@ -14,8 +14,8 @@ class GlobalWorkspace:
         self.csm = csm
 
         # se inscreve no topico CurrentSituationalModel e publica o status do ambiente
-        #pub.subscribe(self.csm.listener, 'CurrentSituationalModel')
-        #pub.sendMessage('CurrentSituationalModel', arg1=self.getModule(), arg2=None)
+        pub.subscribe(self.csm.listener, 'CurrentSituationalModel')
+        pub.sendMessage('CurrentSituationalModel', arg1=self.getModule(), arg2=None)
 
         self.pm= ProceduralMemory(self.winners(), self.df_database, self.csm)
         
