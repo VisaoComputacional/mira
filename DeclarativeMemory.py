@@ -1,4 +1,4 @@
-#from pubsub import pub
+from pubsub import pub
 import pandas as pd
 import numpy as np
 from scipy.sparse.dok import dok_matrix
@@ -12,8 +12,8 @@ class DeclarativeMemory:
         self.users_list = []
 
         # se inscreve no topico CurrentSituationalModel e publica o status do ambiente
-        #pub.subscribe(self.csm.listener, 'CurrentSituationalModel')
-        #pub.sendMessage('CurrentSituationalModel', arg1=self.getModule(), arg2=None)
+        pub.subscribe(self.csm.listener, 'CurrentSituationalModel')
+        pub.sendMessage('CurrentSituationalModel', arg1=self.getModule(), arg2=None)
 
         # carrega arquivo com as colunas userId|movieId|genres
         self.database = pd.read_csv('data/movies_ratings.csv', encoding = 'utf-8', sep=';')
@@ -48,7 +48,6 @@ class DeclarativeMemory:
 
         names = ['user_id', 'item_id', 'rating', 'timestamp']
         df = pd.read_csv('data/u.data', sep='\t', names=names)      # leitura do arquivo de avaliações
-        #print(df.head())
 
         n_users = df.user_id.unique().shape[0]                 #quantidade de usuarios
         n_items = df.item_id.unique().shape[0]                 #quantidade de itens
